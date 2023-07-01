@@ -1,0 +1,23 @@
+{
+  "name": "day-2",
+  "version": "1.0.0",
+  "description": "Learning Namaste React Course ",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivekC2w/React.git"
+  },
+  "keywords": [],
+  "author": "vivek hiray",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vivekC2w/React/issues"
+  },
+  "homepage": "https://github.com/vivekC2w/React#readme",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}
