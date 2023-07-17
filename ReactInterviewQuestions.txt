@@ -1,0 +1,327 @@
+1. Why we use react when JS is already there?
+	1.  React is a JavaScript library that focuses specifically on building user interfaces. It provides a component-based approach 
+	to UI development, allowing developers to create reusable and modular UI components.By using React, we can separate the concerns 
+	of UI development from the overall JavaScript logic of the application, making the codebase more organized and maintainable.
+	
+	2. Virtual DOM is a lightweight representation of the actual DOM. React efficiently updates and re-renders only the necessary 
+	parts of the UI by comparing the virtual DOM with the real DOM. This approach significantly improves performance and minimizes 
+	unnecessary updates, resulting in faster and more responsive user interfaces.
+	
+	3.React encourages the development of reusable components, which can be composed together to build complex user interfaces. 
+	This reusability saves development time and effort, as developers can leverage existing components rather than building everything 
+	from scratch. React's component architecture also promotes code modularity and maintainability.
+	
+2. Class based component 
+	Class-based components in React are an older way of defining components before the introduction of functional components and hooks in 
+	React 16.8. Class components are created using JavaScript classes and extend the React.Component base class provided by the React library.
+
+	Here's an example of a simple class-based component in React:
+	import React, { Component } from 'react';
+
+		class MyClassComponent extends Component {
+		  constructor(props) {
+			super(props);
+			this.state = {
+			  count: 0
+			};
+		  }
+
+		  handleClick = () => {
+			this.setState(prevState => ({
+			  count: prevState.count + 1
+			}));
+		  }
+
+		  render() {
+			return (
+			  <div>
+				<p>Count: {this.state.count}</p>
+				<button onClick={this.handleClick}>Increment</button>
+			  </div>
+			);
+		  }
+		}
+		
+		In the example above, MyClassComponent extends the Component class provided by React. It has a constructor where the initial state is set,
+		and there's a handleClick method that updates the state when the button is clicked. The component's state is accessed using this.state 
+		within the render method.
+
+		Class components also provide lifecycle methods like componentDidMount, componentDidUpdate, and componentWillUnmount that allow you to 
+		perform actions at specific stages of a component's life.
+
+		However, with the introduction of React hooks in React 16.8, functional components became the recommended way of building components. 
+		Hooks provide a simpler and more flexible approach to manage state and handle component lifecycle. Functional components and hooks are 
+		generally favored for new projects as they offer better performance and readability.
+
+		Here's the equivalent example using a functional component and hooks:
+		import React, { useState } from 'react';
+
+		function MyFunctionalComponent() {
+		  const [count, setCount] = useState(0);
+
+		  const handleClick = () => {
+			setCount(prevCount => prevCount + 1);
+		  }
+
+		  return (
+			<div>
+			  <p>Count: {count}</p>
+			  <button onClick={handleClick}>Increment</button>
+			</div>
+		  );
+		}
+		
+		In this functional component, the useState hook is used to manage the state, and the handleClick function uses the setCount function to 
+		update the state.
+
+		Functional components with hooks are generally considered the preferred way of building components in React due to their simplicity, 
+		reusability, and performance benefits. However, class components are still supported in React and may be necessary when working with
+		older codebases or libraries that rely on them.
+
+
+3.Life cycle methods:
+	Lifecycle methods in React are special methods that are called at different stages of a component's lifecycle. They provide an opportunity 
+	to perform actions or respond to specific events during different phases of the component's existence.
+
+	Here are some of the commonly used lifecycle methods in React class components:
+
+	componentDidMount: This method is called after the component has been rendered to the DOM. It is commonly used to initiate API calls, 
+	set up event listeners, or perform any necessary setup that requires access to the DOM.
+
+	componentDidUpdate: This method is called after the component has been updated and re-rendered. It receives the previous props and state 
+	as parameters, allowing you to compare them with the current props and state. It is often used to perform side effects based on prop or 
+	state changes, such as making additional API calls or updating the DOM.
+
+	componentWillUnmount: This method is called right before the component is unmounted and removed from the DOM. It is typically used to perform 
+	cleanup tasks such as canceling API requests, removing event listeners, or clearing timers to avoid memory leaks.
+
+	shouldComponentUpdate: This method is called before a component is re-rendered, allowing you to control whether the re-rendering should 
+	occur or not. By default, React re-renders a component whenever its props or state change, but implementing this method gives you the ability 
+	to optimize performance by preventing unnecessary re-renders.
+
+	It's important to note that with the introduction of React hooks, such as the useEffect hook, the usage of lifecycle methods has been largely 
+	replaced in functional components. Hooks provide a more declarative way to achieve similar functionality.
+
+	Here's an example of a class component that utilizes some of these lifecycle methods:
+	import React, { Component } from 'react';
+
+	class MyComponent extends Component {	
+	  constructor(props) {
+		super(props);
+		this.state = {
+		  count: 0
+		};
+	  }
+
+	  componentDidMount() {
+		console.log('Component mounted');
+	  }
+
+	  componentDidUpdate(prevProps, prevState) {
+		if (prevState.count !== this.state.count) {
+		  console.log('Count changed:', this.state.count);
+		}
+	  }
+
+	  componentWillUnmount() {
+		console.log('Component will unmount');
+	  }
+
+	  handleClick = () => {
+		this.setState(prevState => ({
+		  count: prevState.count + 1
+		}));
+	  }
+
+	  render() {
+		return (
+		  <div>
+			<p>Count: {this.state.count}</p>
+			<button onClick={this.handleClick}>Increment</button>
+		  </div>
+		);
+	  }
+	}
+	
+	In this example, the componentDidMount method logs a message to the console when the component is mounted, the componentDidUpdate method 
+	logs the count value when it changes, and the componentWillUnmount method logs a message when the component is about to be unmounted.
+
+	It's worth noting that in functional components, you can achieve similar functionality using the useEffect hook, which allows you to specify 
+	the equivalent of componentDidMount, componentDidUpdate, and componentWillUnmount using a single hook.
+	
+4. Memoization is a technique used in computer science and programming to optimize the performance of functions by caching the results of expensive 
+function calls and returning the cached result when the same inputs occur again. It is particularly useful when a function is called multiple times 
+with the same arguments, as it avoids redundant computations.
+
+In JavaScript, memoization is often implemented using closures and higher-order functions. Here's a simple example:
+
+function memoize(func) {
+  const cache = {};
+
+  return function(...args) {
+    const key = JSON.stringify(args);
+    
+    if (cache[key]) {
+      return cache[key];
+    }
+
+    const result = func.apply(null, args);
+    cache[key] = result;
+    return result;
+  };
+}
+
+// Example function to be memoized
+function expensiveFunction(n) {
+  console.log('Computing...');
+  return n * 2;
+}
+
+const memoizedExpensiveFunction = memoize(expensiveFunction);
+
+console.log(memoizedExpensiveFunction(5)); // Output: Computing... 10
+console.log(memoizedExpensiveFunction(5)); // Output: 10 (cached result)
+console.log(memoizedExpensiveFunction(8)); // Output: Computing... 16
+console.log(memoizedExpensiveFunction(8)); // Output: 16 (cached result)
+
+In the example above, the memoize function takes in a function (func) and returns a new function. The new function checks if the result for the 
+given arguments (args) is already present in the cache object. If it is, the cached result is returned. Otherwise, the original function is invoked 
+(func.apply(null, args)), and its result is stored in the cache for future use.
+
+When memoizedExpensiveFunction is called multiple times with the same arguments, the expensive computation inside expensiveFunction is only 
+performed once. Subsequent calls with the same arguments retrieve the cached result, resulting in improved performance.
+
+Memoization can significantly optimize the execution time of functions that involve heavy computations, complex calculations, or API calls. 
+However, it is important to note that memoization is most effective when the function's result is deterministic based on its arguments. If a 
+function has side effects or produces different results for the same inputs, memoization may lead to incorrect results or unexpected behavior.
+
+It's worth mentioning that libraries such as Lodash provide built-in memoization functions that can simplify the process of memoizing functions 
+in JavaScript.
+
+
+5. React.memo is a higher-order component (HOC) provided by React that helps optimize the performance of functional components by memoizing 
+their rendered output. It is similar to the concept of memoization but specifically designed for React components.
+
+By wrapping a functional component with React.memo, React will only re-render the component if its props have changed. If the props remain 
+the same between re-renders, React will reuse the previously rendered result, reducing unnecessary re-renders and improving performance.
+
+Here's an example of how to use React.memo:
+
+import React from 'react';
+
+const MyComponent = React.memo(({ prop1, prop2 }) => {
+  // Component logic and JSX here
+});
+
+export default MyComponent;
+In the example above, MyComponent is a functional component wrapped with React.memo. The component will only be re-rendered if the values of prop1 
+or prop2 change. 
+If the component is re-rendered with the same props, React will reuse the previously rendered result, bypassing the rendering process.
+
+It's important to note that React.memo performs a shallow equality check on the component's props. This means that if the props are objects or 
+arrays, a change in their reference (rather than their content) will trigger a re-render. To optimize the memoization further, you can implement 
+custom comparison logic by providing a second argument to React.memo in the form of a comparison function.
+
+const MyComponent = React.memo(({ prop1, prop2 }) => {
+  // Component logic and JSX here
+}, (prevProps, nextProps) => {
+  // Custom comparison logic here
+});
+
+The custom comparison function receives the previous props (prevProps) and the next props (nextProps) as arguments. It should return true if the 
+props are considered equal and false if they are different.
+
+React.memo can be particularly useful when working with large component trees or when components receive expensive-to-calculate props. By memoizing 
+components with React.memo, unnecessary re-renders can be avoided, 
+leading to better performance and improved user experience.
+
+It's important to note that React.memo is not a replacement for proper optimization techniques, and it should be used judiciously. It is recommended 
+to profile and measure the performance of your application to determine if using React.memo provides noticeable performance benefits in specific 
+components.
+
+
+
+6.The virtual DOM (VDOM) is a concept used in React and other frameworks that involves creating a lightweight, in-memory representation of the 
+actual DOM. It acts as a layer between 
+the application and the browser's DOM and provides a more efficient way to update and render components.
+
+Here's a brief explanation of the virtual DOM and its benefits:
+
+Virtual DOM as a representation: The virtual DOM is a JavaScript object that mirrors the structure of the actual DOM. It contains information 
+about elements, their attributes, and the relationships between them.
+
+Diffing algorithm: When a component's state or props change in React, a process called reconciliation occurs. React uses a diffing algorithm to 
+compare the previous virtual DOM representation with the new one and efficiently determine the minimal set of changes needed to update the actual DOM.
+
+The diffing algorithm performs a tree-based comparison of the old and new virtual DOM, identifying the differences between them. It optimizes the 
+update process by minimizing the number of actual DOM operations required.
+
+By only updating the necessary parts of the DOM, React avoids costly full re-rendering operations, resulting in significant performance improvements.
+
+The diffing algorithm operates in O(N) time complexity, where N represents the number of nodes in the virtual DOM tree. This is much more efficient 
+compared to directly manipulating the actual DOM, which can have a time complexity of O(n^3) for certain operations like re-rendering a large list.
+
+React's diffing algorithm applies heuristics and optimizations to further enhance performance. It performs a top-down, depth-first comparison of the 
+virtual DOM tree, looking for differences at each level and prioritizing the updates based on certain assumptions and strategies.
+
+Some of these strategies include key-based reconciliation (using unique keys to track and reorder elements efficiently) and component-level 
+memoization (avoiding re-rendering of components if their props haven't changed).
+
+By leveraging these techniques, React minimizes the number of DOM updates and significantly improves rendering performance, making it a popular 
+choice for building complex and dynamic user interfaces.
+
+It's important to note that while the virtual DOM and the diffing algorithm are powerful tools for optimizing UI updates, they come with a tradeoff 
+in terms of memory overhead. The virtual DOM introduces an additional layer of abstraction and requires memory to store the virtual representation 
+of the DOM. However, in most cases, the performance benefits outweigh the memory costs.
+
+Overall, the virtual DOM and the efficient diffing algorithm in React provide a performant way to update and render components, resulting in a 
+smoother user experience and better application performance.
+
+
+7. Lazy loading in React is a technique used to dynamically load components or other assets only when they are actually needed, rather than 
+loading them upfront during the initial page load. It helps optimize performance by reducing the initial load time and minimizing the amount 
+of code or assets that need to be downloaded.
+
+React provides a built-in feature called React.lazy, along with the Suspense component, to enable lazy loading of components.
+
+Here's an example of how to use lazy loading in React:
+import React, { lazy, Suspense } from 'react';
+
+// Lazy load the component
+const MyComponent = lazy(() => import('./MyComponent'));
+
+// Render the component using Suspense
+function App() {
+  return (
+    <div>
+      <h1>My App</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MyComponent />
+      </Suspense>
+    </div>
+  );
+}
+
+export default App;
+In the example above, the MyComponent is lazily loaded using the lazy function and the import() function syntax. When the MyComponent is 
+encountered during rendering, React will dynamically load its code and any other dependencies (such as CSS or images) on-demand.
+
+The Suspense component is used to wrap the lazily loaded component and provide a fallback UI (in this case, a "Loading..." message) 
+while the component is being loaded. This ensures that the user sees a loading state until the lazy component is fully loaded.
+
+It's important to note a few considerations when using lazy 
+Lazy loading works with default exports. Make sure to use export default when defining the lazily loaded component.
+
+Code splitting: Lazy loading leverages code splitting to create separate chunks for each lazily loaded component. This allows the browser 
+to load only the necessary code for the current page, improving performance.
+
+Suspense for data fetching: While the example above shows the use of Suspense for lazy loading components, Suspense can also be used for 
+handling asynchronous data fetching. By wrapping data-fetching components or hooks with Suspense, you can display fallback UI until the data 
+is loaded.
+
+Lazy loading is especially beneficial when dealing with large applications or components that are not required immediately upon page load. 
+By loading components on-demand, you can reduce the initial bundle size and improve the overall performance of your React application.
+
+
+
+

@@ -1,0 +1,77 @@
+
+What is NPM?
+
+NPM behind the scene works as node package manager but does not stands for Node Package Manager.
+
+Standard repository for all packages. Any package we need to include inour project we can use npm. All libaries, utilities we need.
+
+//Add package manager to our project 
+>>npm init
+
+-------------------------------------------------------------------------------
+
+What is `Parcel/Webpack`? Why do we need it?
+
+Parcel and Webpack are both popular bundlers for JavaScript applications, and they serve a similar purpose of packaging and preparing 
+code for deployment in web development projects.
+
+Bundler - When we have this html css and js files our whole code needs to bundle together, our whole code need to be minified/compressed/clean
+before send to products Bundler helps to do all this things.
+
+Why do we need it?
+see in notebook
+
+----------------------------------------------------------------------------------
+
+What is npx?
+
+npx is a command-line tool that comes bundled with npm (Node Package Manager) since version 5.2+. It stands for "Node Package Executor" 
+and is used to execute Node.js packages directly from the command line without the need for global installation.
+
+To use npx, you simply prepend the desired command with npx. For example, you can run npx create-react-app my-app to create a new React 
+application without explicitly installing the create-react-app globally.
+
+Overall, npx simplifies the execution of Node.js packages, provides a convenient way to run ad-hoc commands, and helps manage different 
+versions of packages in a project-specific manner.
+
+----------------------------------------------------------------------------------------------------------
+
+What is different between `dependencies` vs `devDependencies`?
+
+ dependencies and devDependencies are two different sections in a project's package.json file that serve different purposes.
+
+Dependencies:
+
+The dependencies section lists the packages that are required for the application to run in a production environment.
+These packages are necessary for the application's core functionality and are typically needed at runtime.
+Examples of dependencies could include frameworks, libraries, utility modules, or any other package that the application 
+relies on for its operation.
+
+DevDependencies:
+
+The devDependencies section lists the packages that are only needed during the development and testing phase of the application.
+These packages are not necessary for the application to run in a production environment and are typically used for tasks like 
+building, testing, linting, or documentation generation.
+Examples of devDependencies could include testing frameworks, bundlers, transpilers, linters, or any other package that facilitates 
+the development or testing workflow.
+
+------------------------------------------------------------------------------------------------------------
+
+What is Tree Shaking?
+
+Tree shaking is a technique used in modern JavaScript bundlers, such as Webpack or Rollup, to eliminate unused or dead code from 
+the final bundled output. It helps reduce the size of the JavaScript bundle, resulting in faster downloads and improved performance.
+
+Suppose in our code we have 100's of functions in our code suppose we are just using 4-5 functions parcel will tree shake our files, 
+parcel will remove unused code for you.
+
+---------------------------------------------------------------------------------------------------------------
+
+What is 'dist' folder?
+
+The dist folder is typically generated during the build process using tools like Webpack, Parcel, or other bundlers. The content of 
+the dist folder represents the optimized and production-ready version of the application that can be deployed to a web server or hosting 
+service.
+
+---------------------------------------------------------------------------------------------------------------
+

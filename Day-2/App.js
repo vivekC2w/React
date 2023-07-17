@@ -1,22 +1,40 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const parent = React.createElement("div", { id: "parent" }, [
-  React.createElement("div", { id: "child1" }, [
-    React.createElement("h1", {}, "Learning React JS 🚀"),
-    React.createElement("h2", {}, "React JS is Just Amazing"),
-  ]),
-  React.createElement("div", { id: "child2" }, [
-    React.createElement("h1", {}, "I'm an h1 tag"),
-    React.createElement("h2", {}, "I'm an h2 tag"),
-  ]),
-]);
+//React Element
+//React.createElement => ReactElement(JS Object) => HTML Element(render)
+//JSX => Babel transpiles it to React.createElement => ReactElement(JS Object) => HTML Element(render)
+const heading = React.createElement(
+  "h1",
+  { id: "heading" },
+  "Namaste React 🚀"
+);
 
-//The above code is lengthy for that we have JSX
+//JSX - is not HTML inside Javascript - HTML-like or XML-like syntax
+const jsxHeading = <h1 className="head">Namaste React Using JSX 🚀</h1>;
 
-console.log(parent); //Object - (react-element)
+// Suppose we want to write JSX tags in multiple lines then you have to wrap it in parenthesis
 
-//CREATE root for react
+const jsxHeadingMultLines = (
+  <h1 className="head">Namaste React Using JSX 🚀</h1>
+);
+
+//HomeWork
+// How do I write image tag, image src, anchor tag inside jsx?
+// const imagePath = "/path/to/image.jpg";
+// <img src="/path/to/image.jpg" alt="Image Description" />;
+// const imagePath1 = "/path/to/image.jpg";
+
+// Anchor Tag with Image
+{
+  /* <a href="https://example.com">
+  <img src="/path/to/image.jpg" alt="Image Description" />
+  </a> */
+}
+
+//create root
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(parent);
+// render heading tag in root
+// root.render(heading);
+root.render(jsxHeading);

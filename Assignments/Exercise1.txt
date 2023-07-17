@@ -1,0 +1,90 @@
+What is Emmet?
+
+Emmet is a web development toolkit that allows for efficient and rapid HTML and CSS coding. It provides a set of abbreviations 
+and shortcuts that expand into complete HTML or CSS code snippets. Emmet is designed to enhance productivity and streamline the
+ process of writing code, particularly for repetitive tasks.
+
+With Emmet, you can write shorthand expressions, called Emmet abbreviations, and quickly expand them into HTML or CSS code. 
+For example, you can type ul>li*5 and expand it using Emmet to generate an unordered list with five list items.
+
+Emmet supports a wide range of operations and features, such as nested elements, attributes, numbering, text snippets, mathematical 
+operations, and more. It is widely supported in popular code editors, including Visual Studio Code, Sublime Text, Atom, and others.
+
+Emmet is especially useful for front-end web developers who need to write HTML and CSS code quickly and efficiently. It helps save 
+time and reduces the amount of manual typing required for repetitive code structures, allowing developers to focus more on the logic 
+and functionality of their web applications.
+
+-------------------------------------------------------------------------------------------
+
+Difference Between Library and Framework?
+
+ a library is a collection of code that developers can use as needed, giving them more control over their program's flow. On the 
+ other hand, a framework provides a structured environment where the developer follows predefined patterns and architecture, allowing 
+ the framework to control the program's flow.
+
+-----------------------------------------------------------------------------------------------
+
+What is CDN? Why do we use it?
+
+CDN stands for Content Delivery Network. It is a distributed network of servers located in different geographical locations around the 
+world. The primary purpose of a CDN is to deliver content, such as web pages, images, videos, and other files, to end-users in a fast
+ and efficient manner.
+
+When a user requests content from a website, the request is routed to the nearest CDN server instead of the origin server where the 
+content is hosted. The CDN server closest to the user's location serves the content, reducing the distance the data has to travel and 
+improving the overall response time. This process is known as content caching.
+
+CDNs offer improved performance, scalability, reliability, and global reach, making them an essential component for delivering content 
+efficiently in today's digital landscape.
+
+--------------------------------------------------------------------------------------------------
+
+Why react is known as react?
+
+React is known as React because it revolves around the concept of reacting to changes in data and rendering the user interface accordingly. 
+The name "React" signifies its core principle of efficiently updating the user interface in response to changes in application state.
+
+The name "React" reflects the reactive nature of the library. React introduces a virtual representation of the user interface called the 
+Virtual DOM. When there are changes in the underlying data or state of the application, React compares the previous and current states of 
+the Virtual DOM and efficiently updates only the necessary components, avoiding unnecessary re-renders. This approach allows for efficient 
+and performant updates to the user interface.
+
+Additionally, React embraces the concept of reusable UI components, which are independent and self-contained units of the user interface. 
+These components react to changes in data, rendering their output accordingly. The component-based architecture is a fundamental aspect of 
+React, enabling developers to build modular, reusable, and maintainable UIs.
+
+-------------------------------------------------------------------------------------------------------
+
+What is cross-origin in the script tag?
+
+he crossorigin attribute in the <script> tag is used to control how the browser handles loading and executing JavaScript files from different 
+origins or domains.
+
+When a script is loaded from the same origin (same domain, protocol, and port), there are typically no restrictions on accessing or executing 
+the script. However, when a script is loaded from a different origin, the browser applies security restrictions known as the Same-Origin Policy.
+
+------------------------------------------------------------------------------------------------------
+
+What is the difference between react and react-dom?
+
+React is the core library that handles the logic and structure of building user interfaces, while ReactDOM is a companion package that provides 
+the necessary tools and methods for interacting with the browser's DOM to render and update React components. They work together to enable the 
+development of dynamic and interactive user interfaces in web applications.
+
+---------------------------------------------------------------------------------------------------
+
+What is difference between react.development.js and react.production.js files via CDN?
+
+When developing a React application, it is common to use react.development.js for easy debugging, meaningful error messages, and a more 
+interactive development experience. It helps identify issues and provides helpful warnings and guidance during development.
+
+On the other hand, for production deployments, it is recommended to use react.production.js to optimize the application's performance 
+and reduce the file size. The smaller file size results in faster downloads and improves the runtime efficiency of the application.
+
+When using a CDN (Content Delivery Network) to serve React files, you can choose the appropriate version (react.development.js or 
+react.production.js) based on whether you are developing or deploying the application. In development, you may prefer the unminified 
+version with additional debugging features, while in production, the optimized and minified version is more suitable for performance 
+and efficiency.
+
+----------------------------------------------------------------------------------------------------
+

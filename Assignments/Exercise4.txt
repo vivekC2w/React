@@ -1,0 +1,134 @@
+
+Is JSX mandatory for React?
+
+No, JSX is not mandatory for React. While JSX is the recommended and commonly used syntax for defining React components, you can also write 
+React components using pure JavaScript without JSX.
+
+In fact, JSX is a syntactic extension to JavaScript that provides a more readable and declarative way to define the structure and appearance 
+of React components. It allows you to write HTML-like code directly within JavaScript, making it easier to visualize and understand the 
+component hierarchy.
+
+However, JSX is transpiled into regular JavaScript code before being executed in the browser. Tools like Babel are used to convert JSX 
+into valid JavaScript that the browser can understand. This means that under the hood, React components are ultimately created and rendered 
+as plain JavaScript objects and functions.
+
+---------------------------------------------------------------------------------------------------------------
+
+Is ES6 mandatory for React?
+
+No, ES6 (ECMAScript 2015) is not mandatory for React, but it is highly recommended and widely used in modern React development. 
+ES6 introduces several important features and syntax improvements that greatly enhance the readability, maintainability, and 
+productivity of React code.
+
+Here are a few key ES6 features that are commonly used in React development:
+1.	Arrow Functions: Arrow functions provide a concise syntax for writing function expressions. They are commonly used for defining 
+	React components, event handlers, and callback functions.
+2.	Class Syntax: : ES6 introduced class syntax, which provides a more familiar and intuitive way to define React components as JavaScript classes. 
+	Class components are the foundation of React development and offer lifecycle methods, state management, and component composition.
+3.	Template Literals: Template literals allow for more readable and flexible string interpolation and multiline strings. They are often 
+	used for generating dynamic content in JSX, such as incorporating variables or expressions within JSX markup.
+4.	Destructuring Assignment: Destructuring assignment allows for extracting values from arrays or objects into individual variables. 
+	It is often used in React to extract props or state variables for easier access and cleaner code.
+5.	Modules (import/export): ES6 modules provide a standardized way to organize and share code across different files. They are widely 
+	used in React applications for importing and exporting components, utilities, and other modules.
+6.	Let and Const: ES6 introduced block-scoped variables let and constants const, which offer better variable scoping and help prevent 
+	accidental reassignment of variables. They are preferred over the older var keyword for better code predictability and maintainability.
+	
+-------------------------------------------------------------------------------------------------------
+
+How can I write comments in JSX?
+
+{/* This is a single line comment in JSX */}
+
+// This is a single line comment in JSX
+----------------------------------------------------------------------------------------------------------
+
+What is <React.Fragment></React.Fragment> and <></> ?
+
+In React, <React.Fragment> and <>...</> (empty JSX tags) are used as wrappers to group multiple elements without introducing an additional 
+wrapping element in the rendered output.
+
+----------------------------------------------------------------------------------------------------------
+
+What is Virtual DOM?
+The Virtual DOM (Document Object Model) is a concept in React that refers to a lightweight, in-memory representation of the actual browser DOM. 
+It is a key part of how React updates and renders components efficiently.
+
+By using the Virtual DOM, React minimizes the number of direct manipulations and updates to the browser DOM, which can be expensive operations. 
+Instead, React performs updates on the lightweight Virtual DOM representation, calculates the necessary changes, and applies them efficiently 
+to the actual DOM.
+
+The Virtual DOM allows React to provide a declarative programming model, where you describe how the UI should look based on the component state, 
+and React takes care of efficiently updating the UI to match the desired state.
+
+Overall, the Virtual DOM in React enables efficient rendering, reconciliation, and updating of components, contributing to React's performance 
+and productivity benefits.
+-------------------------------------------------------------------------------------------------------------
+
+What reconciliation in React?
+
+Reconciliation in React refers to the process of updating the actual browser DOM to reflect changes in the component tree. When a component's 
+state or props change, React performs reconciliation to determine the minimal set of changes required to update the UI efficiently.
+
+Here's how the reconciliation process works in React:
+
+Element Diffing: React compares the new Virtual DOM representation of a component with the previous Virtual DOM representation using a diffing 
+algorithm. It analyzes the structure and attributes of the elements and identifies the differences between them.
+
+Reconciliation Algorithm: React uses a reconciliation algorithm to efficiently determine the changes needed to update the DOM. It traverses 
+the component tree, reconciles the differences between the new and previous Virtual DOM representations, and builds a reconciliation plan.
+
+-------------------------------------------------------------------------------------------------------------
+
+What is React fibre?
+
+React Fiber is an internal reimplementation of React's core algorithm for rendering components. It was introduced in React 16 as a rewrite 
+of the previous reconciliation algorithm, aiming to improve performance, enable incremental rendering, and support more advanced features 
+like Suspense and Time Slicing.
+
+Here are some key points about React Fiber:
+Improved Performance
+Incremental Rendering
+Prioritization and Scheduling
+Backwards Compatibility
+
+-------------------------------------------------------------------------------------------------------------
+
+Why do we need keys in React? When do we need keys in React? 
+Keys in React are used to uniquely identify and track individual elements in a collection or list of components. They are important 
+for efficient rendering, reconciliation, and component reusability.
+
+Here's why we need keys in React and when we need to use them:
+
+Efficient Rendering and Reconciliation: When rendering a list of components, React needs a way to efficiently update the DOM and keep 
+track of changes. Keys provide React with a hint about the identity of each element in the list. When the list is updated (e.g., an 
+item is added, removed, or rearranged), React can use the keys to determine which elements have changed and minimize the number of 
+DOM updates required.
+
+Component Reusability: Keys are crucial when rendering dynamically generated lists or collections of components. They help React 
+identify and differentiate each component instance, even if they have the same type. This is particularly important when the components 
+have internal state, event handlers, or other properties that need to be maintained correctly across updates.
+
+Optimizing Performance: Properly using keys can improve the performance of React applications, especially when dealing with large lists 
+or collections of components. By providing unique and stable keys, React can optimize the reconciliation process, reduce unnecessary rendering, 
+nd enhance the overall performance of the application.
+
+-------------------------------------------------------------------------------------------------------------
+
+Can we use index as keys in React?
+
+While it is possible to use the index of an element in an array as a key in React, it is generally not recommended unless you have a 
+specific and justified use case. Using the index as a key can lead to potential issues and unintended consequences.
+
+------------------------------------------------------------------------------------------------------------
+
+What is props in React?
+
+Properties is something that we can pass to the component. If I want to pass data dynamicallly to the component then we can pass it as props
+Props are just normal arguments to a function.
+
+------------------------------------------------------------------------------------------------------------
+
+What is Config driver UI?
+
+In food orderring app cards will be different for different locations. We can build that UI using config driven UI. Wevsite is driven by data.

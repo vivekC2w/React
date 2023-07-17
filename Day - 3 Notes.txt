@@ -1,0 +1,173 @@
+Namaste React Episode 3 ->
+Laying The Foundation -> 
+
+npx parecel index.html -> Executing npm package parcel and give us source file as index.html
+
+Commands are different for dev build and prod build
+
+To make easier we will write a script that will build our project instead of writing this command 
+again and again.
+--------------------------------------------------------------------------------------------
+
+Lets write a script 
+
+How to create a script?
+1. Lets go to package.json file. Its is an NPM script so we need to create in package.json
+//package.json
+ "scripts" : {
+	"start": "parcel index.html",  	    //run our project in dev mode
+	"build": "parcel build index.html",	//building this project for production
+	"test" : "jest",
+ }
+ 
+ cmdPrompt>>npm run start //called the script-> "start": "parcel index.html"
+ cmdPrompt>>npm run build //called the script-> "build": "parcel build index.html"
+ 
+ shortcut >> num run start === num start 
+ 
+ ------------------------------------------------------------------------------------
+ 
+ React Element -> Just Like DOM elements we have react elements in react which are equivalent to 
+ DOM elements. Suppose in browser I want to see h1 tag in browser
+const heading = React.createElement("h1", {id:"heading"}, "Namaste React "); 
+
+React.createElement this basically creates an object when we render it to the DOM then it becomes
+Html element
+
+//create a root
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// render heading tag in root
+root.render(heading);
+
+When react was build above code is core of react this is how we create react element. But, soon react 
+developers realize that this is not good way to create react element. To make it developer friendly facebook
+developer created JSX.
+
+JSX is a Javascript syntax which is easier to create react element.  
+//JSX - is not HTML inside Javascript - HTML/XML Like syntax
+const jsxHeading = <h1>Namaste React Using JSX 🚀</h1>;
+
+JS Engine understands EcmaScript ES6
+This code is transpile before it goes to JS Engine. Because JS Engine does not understand this JSX code. 
+Does Parcel is doing this transpilation itself?
+=> No, Parcel is like a manager. It gives this responsibilty of transpilation to a package which is known 
+as Babel.
+
+Babel is a Compiler (normal javascript package) installed by parcel.  
+
+Babel is another important package after parcel. 
+
+#Single Line and Multiple Lines JSX 
+
+Suppose we want to write JSX tags in multiple lines then you have to wrap it in parenthesis
+
+const jsxHeading = (<h1 className="head"
+	Namaste React Using JSX 🚀
+	</h1>);
+	
+--------------------------------------------------------------------------------------------------------
+
+React Component - 
+
+1. Every thing is component in React. If we create a web-page, Input box, Carts, Header, button, Footer are components. 
+
+Two Types of Components 
+1.	Class Based Components (old way of writing code Nobody uses it)
+	Uses Javascript classes to create components 
+	
+2. 	Functional Components  (New way)
+	Uses Functions to create components 
+	React functional component is just a normal function.
+	If a function return react element or function returning some piece of JSX is nothing but functional component 
+	
+	
+	const HeadingComponent = () => {
+		//returns some JSX element
+		return <h1 className="heading">Namaste React Functional Component</h1>
+	}
+	
+	const HeadingComponent = () => {
+		//returns some JSX element without writing return keyword
+		<h1 className="heading">Namaste React Functional Component</h1>
+	}
+	
+	Both the codes are same.
+	
+	How to render functional component?	
+	root.render(<HeadingComponent />);
+	
+	What is Component Composition?
+	Putting Component inside another component. 
+	suppose we have one more function component title 
+	
+	const Title = () => (
+		<h1 className="head" tabIndex="5">
+		Namste React Using JSX 
+		</h1>
+	);
+	
+	const HeadingComponent = () => (
+		<div id="container">
+			<Title />			//Component COmposition
+			<h1 className="heading">Namaste React Functional Component</h1>
+		</div>
+	);
+	
+	const root = ReactDOM.createElement(document.getElementById("root"));
+	
+	root.render(<HeadingComponent/>);
+	
+	---------------------------------------------------------------------------------
+	
+	Javascript inside JSX 
+	
+	const Title = () => (
+		<h1 className="head" tabIndex="5">
+			Namste React Using JSX 
+		</h1>
+	);
+	
+	const number = 10000;
+	
+	const HeadingComponent = () => (
+		<div id="container">
+			{/*You can write any JS code here*/}
+			<h2>{number}</h2>
+			<h2>{100 + 200}</h2>
+			{Title()}			//One & the 
+			<title />			//Same
+			<title></Title>		//things
+			<h1 className="heading">Namaste React Functional Component</h1>
+		</div>
+	);
+	
+	JSX can have only single parent over Root. At the top level you can have only singlr Root. 
+	
+	const Title = () => (
+	
+		<div>
+			JSX Element can have only Parent element 
+			<div></div>   //these nested tags are fine
+			<p></p>
+			<div></div>
+		</div>
+		<div></div> //This second parent will not allowed
+		
+		Solution to this is React Fragment.
+		React Fragment => behaves like an empty tag 
+		<React.Fragment>
+			<div id="Container1>
+			</div>
+			<div id="Container2>
+			</div>
+		</React.Fragment>
+		
+		You can represent React.Fragement as empty tags <></>
+		<>
+			<div id="Container1>
+			</div>
+			<div id="Container2>
+			</div>
+		</>
+	)
