@@ -1,0 +1,269 @@
+What is the difference between Monolithic and Microservices?
+
+Monolithic and Microservices are two architectural styles used in designing and developing applications. Here are the main differences between them:
+
+# Architecture:
+
+Monolithic: In a monolithic architecture, the entire application is built as a single, large codebase. 
+All components and modules are tightly integrated into a single executable unit. In this approach, there 
+is typically one large application server handling all the functions of the application.
+
+Microservices: In a microservices architecture, the application is broken down into smaller, independent 
+services. Each service handles a specific business function and operates as a separate and autonomous unit. 
+These services communicate with each other through APIs.
+
+# Deployment and Scaling:
+
+Monolithic: Monolithic applications are deployed as a single unit. Scaling the application often involves 
+scaling the entire application, even if only one component requires more resources.
+
+Microservices: Microservices allow for independent deployment and scaling of individual services. This 
+provides more flexibility in managing resources and allows specific services to be scaled up or down based 
+on demand.
+
+# Technology Stack:
+
+Monolithic: A monolithic application typically uses a single technology stack for the entire application.
+
+Microservices: In a microservices architecture, each service can be developed using different technology 
+stacks that are best suited for their specific functionality. This enables the use of different programming 
+languages, databases, and frameworks for each service.
+
+# Communication and Data Consistency:
+
+Monolithic: Communication between different components in a monolithic application is typically direct 
+function calls or method invocations within the same memory space. Data consistency is relatively easier 
+to manage.
+
+Microservices: In a microservices architecture, services communicate through APIs over the network. This 
+introduces the need for handling distributed communication and managing data consistency between services.
+
+==========================================================================================================
+
+Why do we need a useEffect Hook?
+
+The useEffect hook in React is used to perform side effects in functional components. Side effects are 
+operations that are not directly related to rendering UI but are necessary for functionalities such as 
+fetching data from APIs, subscribing to events, updating the document title, or performing cleanup tasks.
+
+We need the useEffect hook for the following reasons:
+
+Fetching Data: When an application needs to fetch data from an external API or server, the useEffect hook 
+allows us to perform this asynchronous operation and update the component's state once the data is retrieved.
+
+Subscribing to Events: useEffect enables subscribing to events, such as keyboard events, mouse events, or 
+window events, and performing actions in response to those events.
+
+Document Title Update: With useEffect, we can update the document title dynamically based on certain 
+conditions or data changes in the component.
+
+Timer and Intervals: useEffect can be used to set timers or intervals for specific actions that need to be 
+executed periodically.
+
+Cleanup and Unsubscribing: When using resources that need to be cleaned up, like timers, subscriptions, or 
+event listeners, useEffect provides a mechanism to unsubscribe or clean up those resources when the component 
+unmounts.
+
+Dependency Management: useEffect allows us to specify dependencies, and the effect will only run when those 
+dependencies change. This helps in preventing unnecessary re-renders and optimizations.
+
+==============================================================================================
+
+What is optional Chaining?
+
+Optional chaining is a feature introduced in ECMAScript 2020 (ES11) that allows you to safely access 
+properties and methods of an object without worrying if the property or method exists. It helps to handle 
+cases where a property or method might be undefined or null, avoiding "TypeError: Cannot read property 'x' 
+of undefined" errors.
+
+The optional chaining syntax uses the question mark (?) to indicate that the property or method should be 
+accessed only if the object reference is not null or undefined. If the object reference is null or undefined, 
+the expression will return undefined instead of throwing an error.
+
+const user = {
+  name: "John",
+  address: {
+    city: "New York",
+    zipCode: 12345,
+  },
+};
+
+// Without optional chaining
+const zipCode = user.address ? user.address.zipCode : undefined; // 12345
+
+// With optional chaining
+const zipCode = user.address?.zipCode; // 12345
+
+const missingProperty = user.address?.state; // undefined
+=====================================================================================================
+
+What is Shimmer UI?
+
+
+Shimmer UI, also known as skeleton loading or skeleton screens, is a design pattern used to provide 
+users with visual feedback that content is being loaded or fetched. It is commonly used in web and 
+mobile applications to create a placeholder effect for content that is still loading or hasn't been 
+fetched yet.
+
+=====================================================================================================
+
+What is the difference between JS expression and JS statement?
+
+JavaScript Expression:
+An expression is a piece of code that evaluates to a value. It can be as simple as a single value 
+or a combination of values, variables, and operators. Expressions are used to compute and produce results. 
+Common examples of JavaScript expressions include:
+
+Arithmetic expressions: 2 + 3, x * y, etc.
+String expressions: "Hello" + " " + "World"
+Function call expressions: Math.sqrt(16), myFunction()
+Conditional expressions (ternary operator): x > 0 ? "positive" : "negative"
+
+---------------------------------------------------------
+JavaScript Statement:
+A statement is a complete unit of code that performs an action or task. It is a sequence of expressions, 
+operators, and keywords that are executed to carry out a specific operation. Statements are used to control 
+the flow of the program, declare variables, loop through code, and execute actions. Some common types of 
+JavaScript statements include:
+Variable declaration: let x = 10;
+Conditional statements: if, else if, else, switch
+Loop statements: for, while, do...while
+Function declarations: function myFunction() {...}
+Assignment statements: x = 5;
+
+=====================================================================================================
+
+What is conditional rendering, explain with a code example?
+
+Conditional rendering in React refers to the process of showing different content or components based on 
+certain conditions or states in the application. It allows developers to control what is displayed to the 
+user based on the current state of the application.
+
+Example:
+import React, { useState } from "react";
+
+const ConditionalExample = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <div>
+      {isLoggedIn ? (
+        <div>
+          <h2>Welcome, User!</h2>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <div>
+          <h2>Please Login</h2>
+          <button onClick={handleLogin}>Login</button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ConditionalExample;
+
+In this example, we have a ConditionalExample component that uses the useState hook to manage the isLoggedIn 
+state. The component conditionally renders different content based on the value of isLoggedIn.
+
+If isLoggedIn is true, the component displays a welcome message and a "Logout" button. If isLoggedIn is 
+false, it displays a login message and a "Login" button.
+
+When the "Login" button is clicked, it calls the handleLogin function, which sets isLoggedIn to true. 
+This triggers a re-render of the component, and the welcome message and "Logout" button are shown.
+
+When the "Logout" button is clicked, it calls the handleLogout function, which sets isLoggedIn to false. 
+This again triggers a re-render of the component, and the login message and "Login" button are shown.
+
+Conditional rendering allows us to create dynamic user interfaces where different content is displayed 
+based on user interactions or application state. In this example, the login status of the user determines 
+what content is shown, but it can be based on any condition or state in the application.
+
+================================================================================================
+
+What is CORS?
+
+
+CORS stands for Cross-Origin Resource Sharing. It is a security feature implemented in web browsers that 
+controls how web pages in one domain can request and interact with resources hosted on another domain.
+
+When a web page from one domain (origin) makes a request to access resources on another domain, the browser 
+enforces a security policy to prevent potential security risks, such as unauthorized data access or data 
+theft. This policy is known as the Same-Origin Policy (SOP).
+
+However, there are legitimate use cases where web pages need to make cross-origin requests, such as 
+loading resources from APIs or accessing content from different domains. CORS provides a mechanism for 
+web servers to declare which origins are allowed to make requests to their resources, thus relaxing the 
+Same-Origin Policy for those whitelisted origins
+
+====================================================================================================
+
+
+What is async and await?
+
+async and await are features in JavaScript that provide a more readable and manageable way to work with 
+asynchronous code, such as making API calls, reading/writing to files, or performing time-consuming tasks. 
+They were introduced in ECMAScript 2017 (ES8) and are built on top of Promises.
+
+async:
+The async keyword is used to define an asynchronous function. When you declare a function with async, it 
+automatically returns a Promise. Inside an async function, you can use the await keyword to pause the 
+execution of the function until a Promise is resolved or rejected. This makes asynchronous code look more 
+like synchronous code, improving readability and maintainability.
+Example of an async function:
+
+async function fetchData() {
+  const response = await fetch('https://api.example.com/data');
+  const data = await response.json();
+  return data;
+}
+
+await:
+The await keyword can only be used inside an async function. It is used before a Promise to pause the execution 
+of the function until the Promise is resolved. If the Promise is rejected, it throws an error, and you can 
+handle it using try-catch blocks. In the example above, the await keyword is used with the fetch function, 
+which returns a Promise that resolves to the response from the server. The await keyword waits for the 
+response to be available before moving on to the next line of code.
+
+Benefits of using async/await:
+
+Improved readability: Asynchronous code using async/await looks more like synchronous code, making it easier 
+to understand and maintain. 
+Error handling: Errors can be easily handled using try-catch blocks, making it clear where an error occurred 
+in the asynchronous code. 
+Sequential execution: The code is executed sequentially, making it easier to reason about the flow of 
+the program.
+
+========================================================================================================
+
+What is the use of `const json = await data.json()`; in getRestaurants();
+
+In the getRestaurants() function, const json = await data.json() is used to parse the response data from 
+the API call and convert it into a JavaScript object. Here's a breakdown of what happens:
+
+await data.json(): The await keyword is used here because the json() method of the Response object returns 
+a Promise. By using await, the execution of the code is paused until the Promise is resolved, and the result 
+is assigned to the variable json.
+
+data.json(): The json() method is a built-in method of the Response object in JavaScript's Fetch API. It 
+takes the response data (which is typically in JSON format) and parses it, converting it into a JavaScript 
+object. If the response data is not in valid JSON format, this method will throw an error.
+
+const json = ...: After the Promise returned by data.json() is resolved, the resulting JavaScript object is 
+assigned to the json variable. This object can then be used in the rest of the code to extract and work with 
+the relevant data from the API response.
+
+Overall, the line const json = await data.json() allows you to easily work with the data fetched from the 
+API by converting it from a JSON string to a JavaScript object. This is a common pattern when making API 
+calls with Fetch API or other libraries that return Promises for asynchronous operations.
+
+==========================================================================================================

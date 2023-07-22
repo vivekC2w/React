@@ -1,0 +1,129 @@
+
+what are the various ways to add images into our App? Explain with code examples
+
+Using the img tag with a local image:
+
+import React from "react";
+
+const App = () => {
+  return (
+    <div>
+      <h1>Welcome to My App</h1>
+      <img src="/images/logo.png" alt="Logo" />
+    </div>
+  );
+};
+
+export default App;
+------------------------------------------------
+Using the img tag with an external image URL:
+
+<div>
+      <h1>Welcome to My App</h1>
+      <img
+        src="https://example.com/images/logo.png"
+        alt="External Logo"
+      />
+</div>
+------------------------------------------------
+Using import to load images in JavaScript
+
+import React from "react";
+import Logo from "./images/logo.png";
+
+const App = () => {
+  return (
+    <div>
+      <h1>Welcome to My App</h1>
+      <img src={Logo} alt="Logo" />
+    </div>
+  );
+};
+
+export default App;
+-------------------------------------------------
+Using require to load images in JavaScript:
+
+const React = require("react");
+const Logo = require("./images/logo.png");
+
+const App = () => {
+  return (
+    <div>
+      <h1>Welcome to My App</h1>
+      <img src={Logo} alt="Logo" />
+    </div>
+  );
+};
+
+module.exports = App;
+--------------------------------------------------
+Using CSS to set background images:
+
+import React from "react";
+import "./App.css";
+
+const App = () => {
+  return (
+    <div className="app-container">
+      <h1>Welcome to My App</h1>
+    </div>
+  );
+};
+
+export default App;
+
+/* App.css */
+.app-container {
+  background-image: url("/images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+------------------------------------------------------------------------------------------------------------------
+
+What would happen if we do console.log(useState())?
+
+If you do console.log(useState()), you will get an array containing two elements:
+
+The first element is the current state value.
+The second element is a function that can be used to update the state.
+For example, the output of console.log(useState("Hello")) would be:
+
+["Hello", function]
+
+------------------------------------------------------------------------------------------------------------------
+
+How will useEffect behave if we don't add a dependency array?
+
+If you don't add a dependency array to the useEffect hook, it will run every time the component is rendered or 
+re-rendered. This means that the effect function inside useEffect will be executed on every render, even if there 
+are no changes to the component's state or props.
+
+------------------------------------------------------------------------------------------------------------------
+
+SPA stands for Single Page Application. It is a web application that loads a single HTML page and dynamically updates 
+the content as the user interacts with the app, providing a seamless user experience.
+
+------------------------------------------------------------------------------------------------------------------
+
+What is difference between Client Side Routing and Server Side Routing?
+
+Client-Side Routing:
+In client-side routing, the routing and navigation are handled on the client-side (in the browser).
+The entire web application is loaded as a single page (Single Page Application - SPA), and subsequent page changes are managed 
+by JavaScript frameworks like React, Angular, or Vue.
+When a user clicks on a link or interacts with the app, the client-side router updates the URL and loads the appropriate content 
+without making a request to the server.
+It offers faster navigation and a smoother user experience as the page doesn't need to be reloaded each time.
+
+Server-Side Routing:
+In server-side routing, the routing and navigation are handled on the server-side.
+When a user clicks on a link or interacts with the app, the browser sends a request to the server for the new page content.
+The server processes the request, generates the appropriate HTML, and sends it back to the client to display the new page.
+Each navigation request results in a full page reload, which can be slower and less responsive compared to client-side routing.
+
+-------------------------------------------------------------------------------------------------------------------------

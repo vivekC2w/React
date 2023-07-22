@@ -1,0 +1,154 @@
+
+How do you create Nested Routes react-router-dom configuration
+
+To create nested routes using react-router-dom, you can define multiple levels of routes by nesting Route 
+components within each other. This allows you to create a hierarchical structure for your application's routes. 
+Here's an example of how to set up nested routes:
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
+import Products from './components/Products';
+import NotFound from './components/NotFound';
+
+const App = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/products" component={Products} />
+        <Route component={NotFound} /> {/* Fallback route for 404 */}
+      </Switch>
+    </Router>
+  );
+};
+
+----------------------------------------------------------------------------------------------------------------
+
+createHashRouter, createMemoryRouter, from React Router docs.
+
+#HashRouter:
+Uses the URL hash (e.g., /#/about) to handle client-side routing.
+Ideal for static sites or when server configuration is limited.
+Adds the route information to the URL after a hash symbol (#).
+Works well with older browsers that don't support HTML5 history API.
+
+#MemoryRouter:
+Keeps the route history in memory without changing the browser's URL.
+Useful for non-browser environments like testing, React Native, or server-side rendering.
+Does not affect the actual URL, making it suitable for isolated UI components.
+Primarily used in scenarios where the user shouldn't have direct access to the URL.
+Remember that both HashRouter and MemoryRouter are part of the React Router library and are alternatives 
+to the commonly used BrowserRouter, which relies on the browser's history API for routing. Choose the appropriate 
+router based on your project requirements and environment.
+----------------------------------------------------------------------------------------------------------------
+
+In class-based components, the order of lifecycle method calls can be divided into three main phases: mounting, updating, 
+and unmounting. Here is the typical order in which these methods are called:
+
+Mounting Phase:
+constructor()
+static getDerivedStateFromProps()
+render()
+componentDidMount()
+
+Updating Phase:
+static getDerivedStateFromProps()
+shouldComponentUpdate()
+render()
+getSnapshotBeforeUpdate()
+componentDidUpdate()
+
+Unmounting Phase:
+componentWillUnmount()
+
+--------------------------------------------------------------------------------------------------------------------
+
+The componentDidMount lifecycle method in React class-based components is used to perform actions or side effects that 
+require access to the DOM or external data sources. It is called immediately after a component is rendered to the screen (mounted).
+
+Here are some common use cases for componentDidMount:
+
+1.	Fetching Data: It is often used to fetch data from APIs or external sources. Once the data is received, it can be set to the 
+component's state, triggering a re-render and displaying the fetched data on the screen.
+
+2.	Initializing Libraries: When using third-party libraries that require access to the DOM, such as charting libraries or interactive 
+maps, componentDidMount is used to initialize and set up these libraries.
+
+3.	Event Listeners: It can be used to add event listeners to the DOM, such as click events, scroll events, etc.
+
+4.	Performing Setup Tasks: It is suitable for any setup tasks that need to be performed after the component has been mounted.
+
+The reason for using componentDidMount is that it ensures that the component has been successfully rendered and is accessible 
+in the DOM before performing any side effects or interactions with external sources. This helps avoid any potential issues that 
+may arise if these actions were attempted before the component was fully rendered.
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Why do we use componentWillUnmount? Show with example
+
+The componentWillUnmount lifecycle method in React class-based components is used to perform cleanup tasks before a component is 
+removed from the DOM. It is called just before the component is unmounted.
+
+One common use case for componentWillUnmount is to remove event listeners that were added in the componentDidMount method to prevent 
+memory leaks and avoid potential issues when the component is no longer needed.
+
+Here's an example of using componentWillUnmount to remove an event listener:
+----------------------------------------------------------------------------
+import React, { Component } from 'react';
+
+class EventListenerComponent extends Component {
+  componentDidMount() {
+    // Add event listener when the component is mounted
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    // Remove the event listener before the component is unmounted
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    // Event handler for resize event
+    // Do something when the window is resized
+  };
+
+  render() {
+    return <div>Event Listener Example</div>;
+  }
+}
+
+export default EventListenerComponent;
+-------------------------------------------------------------------------------------------------------------------
+
+Why do we use super(props) in constructor?
+
+In React class-based components, the super(props) call in the constructor is used to call the constructor of the parent 
+class (Component). It is essential when defining a constructor in a subclass (child class) to ensure that the parent class's 
+constructor is executed before initializing the child class.
+
+Here's why super(props) is used in the constructor:
+
+Initialize State: The constructor is responsible for initializing the state of the component, and it must be called before 
+accessing the this.state object. By calling super(props) at the beginning of the constructor, it allows the component to access 
+this.props and set the initial state using this.state.
+
+Access Parent Class Methods: If the component needs to use methods defined in the parent class (e.g., lifecycle methods or custom methods), 
+super(props) must be called first to ensure that the parent class is initialized correctly.
+
+Ensure Proper Component Behavior: Calling super(props) ensures that the React component class hierarchy is properly set up, and the 
+necessary internal mechanisms are initialized. Without it, the component might not work as expected or may lead to errors.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Why can't we have the callback function of useEffect async?
+In React, the useEffect hook is designed to handle side effects in functional components. It is not allowed to have the callback 
+function of useEffect marked as async because useEffect expects the callback function to either return nothing or a clean-up function.
+
+If the callback function of useEffect is async, it will return a Promise, and React doesn't know how to handle this. Additionally, 
+if the async function throws an error, React cannot catch it properly, which can lead to unexpected behavior.
+
+-------------------------------------------------------------------------------------------------------------------
